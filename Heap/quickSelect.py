@@ -1,16 +1,15 @@
 
 def partition(l,r,arr):
-    storeR = r
     pivot = arr[r]
-    r = r-1
-    while l < r:
-        if arr[l]> pivot:
-            arr[l], arr[r]  = arr[r], arr[l]
-            r -= 1
-        else:
-            l += 1
-    arr[l+1], arr[storeR] = arr[storeR], arr[l+1] 
-    return l
+    i = l
+    for j in range(l,r):
+        if arr[j] < pivot:
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+
+    arr[i], arr[r] = arr[r], arr[i]
+    return i
+
 
 def quickSelect(arr,l,r,k):
     pivotIndex = partition(l,r,arr)
@@ -22,5 +21,5 @@ def quickSelect(arr,l,r,k):
         return quickSelect(arr,l,pivotIndex - 1,k)
 
 arr = [15,10,4,3,20,7]
-k = 1
+k = 6
 print(quickSelect(arr,0,len(arr)-1,k))
